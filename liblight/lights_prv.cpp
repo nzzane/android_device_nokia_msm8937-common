@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-
-<!--
-/* Copyright (c) 2017, The Linux Foundation. All rights reserved.
+/*
+ * Copyright (c) 2017, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -28,18 +26,29 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
--->
 
-<config>
-    <!-- These are telephony components that need to freely run in the background -->
-    <allow-in-power-save package="com.qualcomm.atfwd" />
-    <allow-in-power-save package="com.qualcomm.qti.telephonyservice" />
-    <allow-in-power-save package="com.qulacomm.qcrilmsgtunnel" />
-    <allow-in-power-save package="com.qualcomm.qti.ims" />
-    <allow-in-power-save package="com.qualcomm.qti.radioconfiginterface" />
-    <allow-in-power-save package="com.qualcomm.simcontacts" />
-    <allow-in-power-save package="com.qualcomm.qti.autoregistration" />
-    <allow-in-power-save package="com.qualcomm.qti.server.wigigapp" />
-    <allow-in-power-save package="com.qualcomm.qti.StatsPollManager" />
-    <allow-in-power-save package="com.qualcomm.qti.gsma.services.nfc" />
-</config>
+
+
+#include <hardware/hwcomposer_defs.h>
+#include "disp_color_apis.h"
+#include "lights_prv.h"
+
+/******************************************************************************/
+static DISPAPI_HANDLE g_ctx;
+
+/**
+ * device methods
+ */
+
+void set_brightness_ext_init(void)
+{
+   disp_api_init((DISPAPI_HANDLE*) &g_ctx, 0);
+}
+
+int set_brightness_ext_level(int level)
+{
+    int err = disp_api_set_panel_brightness_level_ext(g_ctx, HWC_DISPLAY_PRIMARY,
+                                                 level, 0);
+
+    return err;
+}

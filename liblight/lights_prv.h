@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-
-<!--
-/* Copyright (c) 2017, The Linux Foundation. All rights reserved.
+/*
+ * Copyright (c) 2017, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -28,18 +26,18 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
--->
 
-<config>
-    <!-- These are telephony components that need to freely run in the background -->
-    <allow-in-power-save package="com.qualcomm.atfwd" />
-    <allow-in-power-save package="com.qualcomm.qti.telephonyservice" />
-    <allow-in-power-save package="com.qulacomm.qcrilmsgtunnel" />
-    <allow-in-power-save package="com.qualcomm.qti.ims" />
-    <allow-in-power-save package="com.qualcomm.qti.radioconfiginterface" />
-    <allow-in-power-save package="com.qualcomm.simcontacts" />
-    <allow-in-power-save package="com.qualcomm.qti.autoregistration" />
-    <allow-in-power-save package="com.qualcomm.qti.server.wigigapp" />
-    <allow-in-power-save package="com.qualcomm.qti.StatsPollManager" />
-    <allow-in-power-save package="com.qualcomm.qti.gsma.services.nfc" />
-</config>
+#ifndef LIGHTS_PRV_H
+#define LIGHTS_PRV_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+extern void set_brightness_ext_init(void);
+extern int set_brightness_ext_level(int level);
+
+#ifdef __cplusplus
+}
+#endif
+#endif
