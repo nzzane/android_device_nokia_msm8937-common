@@ -111,10 +111,11 @@ PRODUCT_PACKAGES += \
     copybit.msm8937 \
     gralloc.msm8937 \
     hwcomposer.msm8937 \
-    libdisplayconfig \
-    libqdMetaData.system \
+    memtrack.msm8937 \
+    liboverlay \
+    libgenlock \
     libtinyxml \
-    memtrack.msm8937
+    libdisplayconfig
 
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
@@ -405,5 +406,5 @@ PRODUCT_COPY_FILES += \
 PRODUCT_BOOT_JARS += \
     WfdCommon
 
-# Inherit common proprietary files
-$(call inherit-product-if-exists, vendor/xiaomi/msm8937-common/msm8937-common-vendor.mk)
+# Inherit proprietary files
+$(call inherit-product, vendor/nokia/PLE/PLE-vendor.mk)
