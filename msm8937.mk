@@ -383,10 +383,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vndk-sp
 
-# WiFi
+# Wifi
 PRODUCT_PACKAGES += \
+    ipacm \
+    ipacm-diag \
+    IPACM_cfg.xml \
+    libqsap_sdk \
+    libQWiFiSoftApCfg \
     libwpa_client \
-    wcnss_service
+    libwcnss_qmi
 
 PRODUCT_PACKAGES += \
     hostapd \
