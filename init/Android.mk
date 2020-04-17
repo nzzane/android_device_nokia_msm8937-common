@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,18 +18,15 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
+LOCAL_MODULE_TAGS := optional
 LOCAL_C_INCLUDES := \
     system/core/base/include \
-    system/core/init
-LOCAL_CFLAGS := -Wall
-LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := init_msm8937.cpp
-LOCAL_STATIC_LIBRARIES := \
-    libbase
+    system/core/init \
+    external/selinux/libselinux/include
 
-ifneq ($(TARGET_LIBINIT_MSM8937_DEFINES_FILE),)
-    LOCAL_SRC_FILES += ../../../../$(TARGET_LIBINIT_MSM8937_DEFINES_FILE)
-endif
-LOCAL_MODULE := libinit_msm8937
+LOCAL_CPPFLAGS := -Wall
+LOCAL_SRC_FILES := init_PLE.cpp
+LOCAL_MODULE := libinit_PLE
+LOCAL_STATIC_LIBRARIES := libbase libselinux
 
 include $(BUILD_STATIC_LIBRARY)

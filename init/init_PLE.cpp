@@ -32,14 +32,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/sysinfo.h>
+
+#include <dirent.h>
+#include <errno.h>
 
 #include <android-base/file.h>
+#include <android-base/logging.h>
 #include <android-base/properties.h>
-
-#include "init_msm8937.h"
+#include <android-base/strings.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
+#include "log.h"
+#include "util.h"
 
 using android::base::GetProperty;
 using android::base::ReadFileToString;

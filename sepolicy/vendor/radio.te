@@ -1,1 +1,1 @@
-allow system_server radio_prop:property_service set;
+allow radio wcnss_prop:file read;

@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-VENDOR_PATH := device/nokia/msm8937-common
+VENDOR_PATH := device/xiaomi/msm8937-common
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
@@ -30,14 +30,14 @@ DEVICE_PACKAGE_OVERLAYS += \
 # currently contain all of the bitmaps at xhdpi density so
 # we do this little trick to fall back to the hdpi version
 # if the xhdpi doesn't exist.
-PRODUCT_AAPT_CONFIG := normal xhdpi xxhdpi
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
 # A list of dpis to select prebuilt apk, in precedence order.
 PRODUCT_AAPT_PREBUILT_DPI := hdpi
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 1920
-TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT := 1280
+TARGET_SCREEN_WIDTH := 720
 
 # Additional native libraries
 PRODUCT_COPY_FILES += \
@@ -91,7 +91,7 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    snap
+    Snap
 
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
@@ -111,11 +111,10 @@ PRODUCT_PACKAGES += \
     copybit.msm8937 \
     gralloc.msm8937 \
     hwcomposer.msm8937 \
-    memtrack.msm8937 \
-    liboverlay \
-    libgenlock \
+    libdisplayconfig \
+    libqdMetaData.system \
     libtinyxml \
-    libdisplayconfig
+    memtrack.msm8937
 
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
@@ -383,15 +382,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vndk-sp
 
-# Wifi
+# WiFi
 PRODUCT_PACKAGES += \
-    ipacm \
-    ipacm-diag \
-    IPACM_cfg.xml \
-    libqsap_sdk \
-    libQWiFiSoftApCfg \
     libwpa_client \
-    libwcnss_qmi
+    wcnss_service
 
 PRODUCT_PACKAGES += \
     hostapd \
@@ -407,5 +401,9 @@ PRODUCT_COPY_FILES += \
     $(VENDOR_PATH)/wifi/firmware/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
     $(VENDOR_PATH)/wifi/firmware/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/prima/WCNSS_qcom_cfg.ini
 
-# Inherit proprietary files
-$(call inherit-product, vendor/nokia/PLE/PLE-vendor.mk)
+# WiFi Display
+PRODUCT_BOOT_JARS += \
+    WfdCommon
+
+# Inherit common proprietary files
+$(call inherit-product-if-exists, vendor/xiaomi/msm8937-common/msm8937-common-vendor.mk)
