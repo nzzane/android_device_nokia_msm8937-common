@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-VENDOR_PATH := device/xiaomi/msm8937-common
+VENDOR_PATH := device/nokia/msm8937-common
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
@@ -31,13 +31,12 @@ DEVICE_PACKAGE_OVERLAYS += \
 # we do this little trick to fall back to the hdpi version
 # if the xhdpi doesn't exist.
 PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xhdpi
-# A list of dpis to select prebuilt apk, in precedence order.
-PRODUCT_AAPT_PREBUILT_DPI := hdpi
+PRODUCT_AAPT_CONFIG := normal xhdpi xxhdpi
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 1280
-TARGET_SCREEN_WIDTH := 720
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_WIDTH := 1080
 
 # Additional native libraries
 PRODUCT_COPY_FILES += \
@@ -91,11 +90,15 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    Snap
+    camera.msm8937
 
 PRODUCT_PACKAGES += \
+    camera.device@1.0-impl \
+    camera.device@3.2-impl \
     android.hardware.camera.provider@2.4-impl \
-    android.hardware.camera.provider@2.4-service
+    android.hardware.camera.provider@2.4-service \
+    vendor.qti.hardware.camera.device@1.0 \
+    vendor.qti.hardware.camera.device@1.0_vendor
 
 # CNE
 PRODUCT_PACKAGES += \
@@ -129,7 +132,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
     android.hardware.drm@1.0-service \
-    android.hardware.drm@1.1-service.clearkey
+    android.hardware.drm@1.0-service.widevine
 
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
@@ -406,4 +409,4 @@ PRODUCT_BOOT_JARS += \
     WfdCommon
 
 # Inherit common proprietary files
-$(call inherit-product-if-exists, vendor/xiaomi/msm8937-common/msm8937-common-vendor.mk)
+#$(call inherit-product-if-exists, vendor/xiaomi/msm8937-common/msm8937-common-vendor.mk)
