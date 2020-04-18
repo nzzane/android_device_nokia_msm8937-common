@@ -1,1 +1,1 @@
-allow kernel init:process noatsecure;
+allow kernel debugfs_wlan:dir search;
