@@ -113,7 +113,7 @@ void set_zram_size(void)
     fclose(f);
 }
 
-void vendor_load_properties()
+/* void vendor_load_properties()
 {
     check_device();
     set_zram_size();
@@ -127,3 +127,4 @@ void vendor_load_properties()
 
     init_target_properties();
 }
+*/
